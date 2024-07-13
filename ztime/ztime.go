@@ -68,6 +68,29 @@ func StartOfDay(now time.Time) time.Time {
 	return t
 }
 
+// StartOfDayStampFromStr 获取指定天的时间范围
+// 天格式 2006-01-02
+// 为空时候返回当天的
+func StartOfDayStampFromStr(day string) (int64, error) {
+	nowt := time.Now()
+
+	var begin int64
+	if len(day) > 0 {
+		tm, err := time.ParseInLocation("2006-01-02", day, nowt.Location())
+		if err != nil {
+			return 0, err
+		}
+
+		begin = tm.Unix()
+
+	} else {
+		begin = StartOfDay(nowt).Unix()
+
+	}
+
+	return begin, nil
+}
+
 // 本周初
 func StartOfWeek(now time.Time) time.Time {
 	t := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, now.Location())

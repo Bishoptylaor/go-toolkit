@@ -1,4 +1,4 @@
-package utils
+package zutils
 
 /*
  *  ┏┓      ┏┓
@@ -16,8 +16,8 @@ package utils
  *　　 ┗━┓┓┏━━┳┓┏┛
  *　　   ┃┫┫  ┃┫┫
  *      ┗┻┛　 ┗┻┛
- @Time    : 2024/7/13 -- 14:45
+ @Time    : 2024/7/13 -- 15:52
  @Author  : bishop ❤️ MONEY
  @Software: GoLand
- @Description: utils-eg.go
+ @Description: resource.go
 */
