@@ -18,7 +18,6 @@ package ztime
  *      ┗┻┛　 ┗┻┛
  @Time    : 2024/7/13 -- 14:09
  @Author  : bishop ❤️ MONEY
- @Software: GoLand
  @Description: 时间函数封装
  @TODO: 结构整理 & 增加时区逻辑
 */
@@ -114,7 +113,6 @@ func EndOfWeek(now time.Time) time.Time {
 // 时间转换 返回请求对应的起止时间，如果是永久, 则返回
 // timeType 时间类型
 // timeValue
-//
 func GetTimeSE(timeType int64, timeValue int64, now time.Time) (ST *time.Time, ET *time.Time, err error) {
 	if timeType == TimeForever {
 		return nil, nil, nil

@@ -18,7 +18,6 @@ package ztime
  *      ┗┻┛　 ┗┻┛
  @Time    : 2024/7/13 -- 14:14
  @Author  : bishop ❤️ MONEY
- @Software: GoLand
  @Description: 时间窗口校验，是否还在窗口内
 */
 

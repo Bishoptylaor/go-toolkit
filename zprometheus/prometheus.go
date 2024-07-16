@@ -18,6 +18,5 @@ package zprometheus
  *      ┗┻┛　 ┗┻┛
  @Time    : 2024/7/13 -- 14:44
  @Author  : bishop ❤️ MONEY
- @Software: GoLand
  @Description: prometheus.go
 */

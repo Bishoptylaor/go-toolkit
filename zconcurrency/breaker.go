@@ -18,7 +18,6 @@ package zconcurrency
  *      ┗┻┛　 ┗┻┛
  @Time    : 2024/7/13 -- 14:58
  @Author  : bishop ❤️ MONEY
- @Software: GoLand
  @Description: 熔断器
 */
 

@@ -18,7 +18,6 @@ package request
  *      ┗┻┛　 ┗┻┛
  @Time    : 2024/7/13 -- 14:03
  @Author  : bishop ❤️ MONEY
- @Software: GoLand
  @Description: httpwrapper.go
 */
 

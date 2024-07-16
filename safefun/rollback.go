@@ -1,4 +1,4 @@
-package safe
+package safefun
 
 import "fmt"
 
@@ -20,7 +20,6 @@ import "fmt"
  *      ┗┻┛　 ┗┻┛
  @Time    : 2024/7/13 -- 14:07
  @Author  : bishop ❤️ MONEY
- @Software: GoLand
  @Description: 回滚序列函数
  @TODO: panic 封装处理
 */

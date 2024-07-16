@@ -23,11 +23,11 @@ import (
  *      ┗┻┛　 ┗┻┛
  @Time    : 2024/7/13 -- 13:55
  @Author  : bishop ❤️ MONEY
- @Software: GoLand
  @Description:  手机号相关处理函数
 */
 
-/*ParsePhone
+/*
+ParsePhone
 通用的手机号解析，以及检查
 手机号格式为：国家区号-手机号
 国家区号和手机号使用"-"进行分割

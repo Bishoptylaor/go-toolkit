@@ -1,4 +1,4 @@
-package safe
+package safefun
 
 import (
 	"fmt"
@@ -23,7 +23,6 @@ import (
  *      ┗┻┛　 ┗┻┛
  @Time    : 2024/7/13 -- 13:58
  @Author  : bishop ❤️ MONEY
- @Software: GoLand
  @Description: 给运行的函数f封装，避免panic导致全局退出
 */
 
@@ -31,8 +30,8 @@ import (
 func FunWrapperWithArgs(f func(args ...interface{}), args ...interface{}) (err error) {
 
 	defer func() {
-		if panic := recover(); panic != nil {
-			err = DumpStack(panic)
+		if p := recover(); p != nil {
+			err = DumpStack(p)
 		}
 	}()
 
@@ -44,8 +43,8 @@ func FunWrapperWithArgs(f func(args ...interface{}), args ...interface{}) (err e
 func FunWrapper(f func()) (err error) {
 
 	defer func() {
-		if panic := recover(); panic != nil {
-			err = DumpStack(panic)
+		if p := recover(); p != nil {
+			err = DumpStack(p)
 		}
 	}()
 

@@ -1,4 +1,6 @@
-package limiter
+package zfile
+
+import "os"
 
 /*
  *  ┏┓      ┏┓
@@ -16,8 +18,11 @@ package limiter
  *　　 ┗━┓┓┏━━┳┓┏┛
  *　　   ┃┫┫  ┃┫┫
  *      ┗┻┛　 ┗┻┛
- @Time    : 2024/7/13 -- 14:45
+ @Time    : 2024/7/13 -- 14:44
  @Author  : bishop ❤️ MONEY
- @Software: GoLand
- @Description: limiter-eg.go
+ @Description: 常用文件操作封装
 */
+
+func ReadAll(fileName string) ([]byte, error) {
+	return os.ReadFile(fileName)
+}

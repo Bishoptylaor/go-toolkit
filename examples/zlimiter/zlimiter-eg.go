@@ -1,4 +1,4 @@
-package zutils
+package zlimiter
 
 /*
  *  ┏┓      ┏┓
@@ -18,6 +18,5 @@ package zutils
  *      ┗┻┛　 ┗┻┛
  @Time    : 2024/7/13 -- 14:45
  @Author  : bishop ❤️ MONEY
- @Software: GoLand
- @Description: utils-eg.go
+ @Description: limiter-eg.go
 */
