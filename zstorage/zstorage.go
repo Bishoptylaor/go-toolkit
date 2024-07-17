@@ -27,8 +27,8 @@ const (
 	MongoNotFound      = "not found"
 	MysqlNoRows        = "sql: no rows in result set"
 	RPCRespNil         = "rpc: nil"
-	XsqlErrNilRows     = "[scanner]: rows can't be nil"
-	XsqlErrEmptyResult = `[scanner]: empty result`
+	ZSqlErrNilRows     = "[scanner]: rows can't be nil"
+	ZSqlErrEmptyResult = `[scanner]: empty result`
 )
 
 // ContainStr check if string target in string array
@@ -59,8 +59,8 @@ func IsNotFound(err error) bool {
 		if errMsg == RedisNil ||
 			errMsg == MongoNotFound ||
 			errMsg == MysqlNoRows ||
-			errMsg == XsqlErrNilRows ||
-			errMsg == XsqlErrEmptyResult ||
+			errMsg == ZSqlErrNilRows ||
+			errMsg == ZSqlErrEmptyResult ||
 			errMsg == RPCRespNil {
 			return true
 		}

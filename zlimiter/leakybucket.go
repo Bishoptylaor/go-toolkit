@@ -16,10 +16,7 @@ package zlimiter
  *　　 ┗━┓┓┏━━┳┓┏┛
  *　　   ┃┫┫  ┃┫┫
  *      ┗┻┛　 ┗┻┛
- @Time    : 2024/7/13 -- 14:44
+ @Time    : 2024/7/16 -- 14:45
  @Author  : bishop ❤️ MONEY
  @Description: limiter.go
 */
-
-type ZLimiter interface {
-}
