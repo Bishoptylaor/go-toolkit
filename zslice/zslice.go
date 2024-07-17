@@ -1,10 +1,3 @@
-// Copyright © 2014 Steve Francia <spf@spf13.com>.
-//
-// Use of this source code is governed by an MIT-style
-// license that can be found in the LICENSE file.
-
-// Package cast provides easy and safe casting in Go.
-
 package zslice
 
 /*
@@ -80,8 +73,15 @@ func Reverse[T any](src []T) {
 	}
 }
 
-// Cut 左开右闭
-func Cut[T any](src []T, start, end int64) []T {
+func RPop[T any](src []T) (last T) {
+	if len(src) == 0 {
+		return
+	}
+	last = src[len(src)-1]
+	src = src[:len(src)-1]
+	return
+}
 
-	return nil
+func FrontAdd[T any](src []T, added []T) []T {
+	return append(added, src...)
 }
