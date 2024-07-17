@@ -33,11 +33,11 @@ type VersionCmp struct {
 func NewVersionCmp(ver string) *VersionCmp {
 	v := &VersionCmp{}
 
-	v.ver = v.fmtver(ver)
+	v.ver = v.fmtVer(ver)
 	return v
 }
 
-func (m *VersionCmp) fmtver(ver string) string {
+func (m *VersionCmp) fmtVer(ver string) string {
 	pvs := strings.Split(ver, ".")
 
 	rv := ""
@@ -50,35 +50,35 @@ func (m *VersionCmp) fmtver(ver string) string {
 }
 
 func (m *VersionCmp) Min() string {
-	return m.fmtver("0")
+	return m.fmtVer("0")
 }
 
 func (m *VersionCmp) Max() string {
-	return m.fmtver("99999999999999999999")
+	return m.fmtVer("99999999999999999999")
 }
 
 func (m *VersionCmp) Lt(ver string) bool {
-	return m.ver < m.fmtver(ver)
+	return m.ver < m.fmtVer(ver)
 }
 
 func (m *VersionCmp) Lte(ver string) bool {
-	return m.ver <= m.fmtver(ver)
+	return m.ver <= m.fmtVer(ver)
 }
 
 func (m *VersionCmp) Gt(ver string) bool {
-	return m.ver > m.fmtver(ver)
+	return m.ver > m.fmtVer(ver)
 }
 
 func (m *VersionCmp) Gte(ver string) bool {
-	return m.ver >= m.fmtver(ver)
+	return m.ver >= m.fmtVer(ver)
 }
 
 func (m *VersionCmp) Eq(ver string) bool {
-	return m.ver == m.fmtver(ver)
+	return m.ver == m.fmtVer(ver)
 }
 
 func (m *VersionCmp) Ne(ver string) bool {
-	return m.ver != m.fmtver(ver)
+	return m.ver != m.fmtVer(ver)
 }
 
 func (m *VersionCmp) GetFormatVersion() string {
