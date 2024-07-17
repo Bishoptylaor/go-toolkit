@@ -27,7 +27,7 @@ import (
  @Description: speedgovernor.go
 */
 
-func NewSpeedGovernor(tag string, req, allow int32, redisCli *redis.Client) (Bucket, bool) {
+func NewSpeedGovernor(tag string, req, allow int32, redisCli *redis.Client) (ZBucket, bool) {
 	// 最多100% allow 应 <= req
 	if tag == "" || req == 0 {
 		return nil, false

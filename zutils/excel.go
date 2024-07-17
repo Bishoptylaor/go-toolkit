@@ -1,6 +1,7 @@
 package zutils
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"github.com/360EntSecGroup-Skylar/excelize"
@@ -34,7 +35,7 @@ type excelTool struct{}
 var ExcelTool excelTool
 
 // GetIOReaderFromUrl 通过url获取io Reader数据流
-func (et excelTool) GetIOReaderFromUrl(url string) (reader io.ReadCloser, err error) {
+func (et excelTool) getIOReaderFromUrl(url string) (reader io.ReadCloser, err error) {
 	fun := "GetIOReaderFromUrl"
 	load := func() (io.ReadCloser, error) {
 		httpRes, err := http.Get(url)
@@ -63,7 +64,7 @@ func (et excelTool) GetExcelFileFromUrl(url string) (f *excelize.File, err error
 	if url == "" {
 		return nil, fmt.Errorf("%s url为空", fun)
 	}
-	ioReader, err := et.GetIOReaderFromUrl(url)
+	ioReader, err := et.getIOReaderFromUrl(url)
 	if err != nil {
 		return nil, err
 	}
@@ -81,27 +82,19 @@ func (et excelTool) CreateNewExcel() (f *excelize.File) {
 }
 
 // UploadExcelFile 上传Excel文件到CDN中,并获取URL
-func (et excelTool) UploadExcelFile(ctx context.Context, f *excelize.File) (url string, err error) {
-	// writeBuf, err := f.WriteToBuffer()
-	// if err != nil {
-	// 	return "", err
-	// }
-	// req := &StorageAdapter.UploadBigFileReq{
-	// 	Uid:       0,
-	// 	Busstype:  "market_text",
-	// 	Conttype:  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-	// 	Reader:    writeBuf,
-	// 	Timeout:   300 * time.Second,
-	// 	Action:    1,
-	// 	UriSuffix: "",
-	// 	Fileext:   ".xlsx",
-	// 	Mode:      storageservice.UploadBigFileMode_FILE_EXT,
-	// }
-	// res := StorageAdapter.UploadBigFileExt(ctx, req)
-	// if res.GetErrinfo() != nil {
-	// 	return "", fmt.Errorf("ExcelTool.UploadExcelFile--> StorageAdapter.UploadBigFileExt err:%s", res.Errinfo)
-	// }
-	// answerUrl := utilPalfish.GetUrl(res.Info.Uri, thriftutil.CreateContextByUid(0))
-	// return answerUrl, nil
-	return
+func (et excelTool) UploadExcelFile(ctx context.Context, f *excelize.File,
+	uploader func(ctx context.Context, buf *bytes.Buffer, args ...any) (string, error),
+	urlFmt func(ctx context.Context, srcUrl string) (dstUrl string),
+	args ...any) (url string, err error) {
+
+	writeBuf, err := f.WriteToBuffer()
+	if err != nil {
+		return "", err
+	}
+
+	url, err = uploader(ctx, writeBuf, args)
+	if err != nil {
+		return "", err
+	}
+	return urlFmt(ctx, url), nil
 }

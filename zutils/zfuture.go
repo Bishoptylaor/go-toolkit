@@ -8,27 +8,6 @@ import (
 	pkgErrors "github.com/pkg/errors"
 )
 
-/*
- *  ┏┓      ┏┓
- *┏━┛┻━━━━━━┛┻┓
- *┃　　　━　　  ┃
- *┃   ┳┛ ┗┳   ┃
- *┃           ┃
- *┃     ┻     ┃
- *┗━━━┓     ┏━┛
- *　　 ┃　　　┃神兽保佑
- *　　 ┃　　　┃代码无BUG！
- *　　 ┃　　　┗━━━┓
- *　　 ┃         ┣┓
- *　　 ┃         ┏┛
- *　　 ┗━┓┓┏━━┳┓┏┛
- *　　   ┃┫┫  ┃┫┫
- *      ┗┻┛　 ┗┻┛
- @Time    : 2024/7/13 -- 15:03
- @Author  : bishop ❤️ MONEY
- @Description: zfuture.go
-*/
-
 // Future safe goroutine
 type Future struct {
 	ch  chan struct{}
@@ -36,7 +15,7 @@ type Future struct {
 	err error
 }
 
-// Func func of future
+// Func function of future
 type Func func() error
 
 // NewFuture create a future
@@ -93,6 +72,9 @@ func (f *Future) Done() bool {
 // WaitAllFutures wait all futures done
 func WaitAllFutures(ctx context.Context, futures ...*Future) {
 	for _, feature := range futures {
-		feature.Get(ctx)
+		err := feature.Get(ctx)
+		if err != nil {
+			continue
+		}
 	}
 }

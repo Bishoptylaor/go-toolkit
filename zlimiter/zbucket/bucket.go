@@ -28,7 +28,7 @@ import (
  @Description: bucket
 */
 
-type Bucket interface {
+type ZBucket interface {
 	Refill(ctx context.Context)
 	Available(ctx context.Context) bool
 }
