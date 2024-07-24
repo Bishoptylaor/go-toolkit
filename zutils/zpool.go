@@ -5,7 +5,7 @@ import (
 
 	"github.com/panjf2000/ants/v2"
 
-	"gitlab.pri.ibanyu.com/middleware/seaweed/xlog"
+	"github.com/Bishoptylaor/go-toolbox/zlog"
 )
 
 // Pool alias of ants.Pool
@@ -54,5 +54,5 @@ type WorkerLogger struct {
 
 // Printf implements ants.Logger
 func (WorkerLogger) Printf(format string, args ...interface{}) {
-	xlog.Infof(context.Background(), format, args...)
+	zlog.Infof(context.Background(), format, args...)
 }

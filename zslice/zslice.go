@@ -21,6 +21,8 @@ package zslice
  @Description: slice 常用函数封装
 */
 
+type EqualFn func(a, b any) bool
+
 // Distinct 对 src 去重
 func Distinct[T comparable](src []T) (dst []T) {
 	tempMap := map[T]struct{}{}
