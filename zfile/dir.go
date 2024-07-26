@@ -1,7 +1,9 @@
 package zfile
 
 import (
+	"errors"
 	"fmt"
+	"github.com/Bishoptylaor/go-toolbox/zcontainer"
 	"os"
 )
 
@@ -124,7 +126,7 @@ func EachFile(filepath string, fic FileInfoCallback) error {
 	if !fi.IsDir() {
 		return errors.New("filepath is not dir")
 	}
-	var stack xcontainer.Stack
+	var stack zcontainer.Stack
 	stack.Push(filepath)
 	for {
 		if stack.Len() <= 0 {
@@ -148,7 +150,7 @@ func EachFile(filepath string, fic FileInfoCallback) error {
 			}
 			fp.Close()
 			for _, sfi := range dirs {
-				pathname := PathAppendName(fpath, sfi.Name())
+				pathname := DirAppendFileName(fpath, sfi.Name())
 				if sfi.IsDir() {
 					stack.Push(pathname)
 				}
