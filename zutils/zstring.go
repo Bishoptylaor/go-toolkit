@@ -96,7 +96,7 @@ func StrLen(str string) int {
 
 func Str2Bytes(s string) []byte {
 	x := (*[2]uintptr)(unsafe.Pointer(&s))
-	h := [3]uintptr{x[0], x[1], x[1]}
+	h := [3]uintptr{x[0], x[1], x[1]} // copy data, len, cap
 	return *(*[]byte)(unsafe.Pointer(&h))
 }
 

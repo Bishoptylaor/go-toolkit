@@ -48,7 +48,7 @@ func ParsePhone(phone string) (area string, number string) {
 	return
 }
 
-// 获取带区号的手机号
+// WorldPhone 获取带区号的手机号
 func WorldPhone(area, number string) string {
 	if len(area) == 0 {
 		area = "86"
@@ -56,6 +56,7 @@ func WorldPhone(area, number string) string {
 	return area + "-" + number
 }
 
+// WorldPhoneFmt
 // 输入的是一个可能不带区号，也可能带的号
 // 返回一个规范的，肯定带着区号的表示
 func WorldPhoneFmt(phone string) string {
