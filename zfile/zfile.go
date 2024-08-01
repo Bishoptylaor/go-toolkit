@@ -300,7 +300,7 @@ func ensureWrite(out io.Writer, bytes []byte) error {
 			return err
 		}
 		if n <= 0 {
-			return fmt.Errorf("Cann't write bytes to io.Writer, it writes %d bytes", n)
+			return fmt.Errorf("cann't write bytes to io.Writer, it writes %d bytes", n)
 		}
 		wrote += n
 	}

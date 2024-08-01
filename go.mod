@@ -1,4 +1,4 @@
-module github.com/Bishoptylaor/go-toolbox
+module github.com/Bishoptylaor/go-toolkit
 
 go 1.22
 
