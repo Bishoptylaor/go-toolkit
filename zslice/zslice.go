@@ -1,5 +1,7 @@
 package zslice
 
+import "slices"
+
 /*
  *  ┏┓      ┏┓
  *┏━┛┻━━━━━━┛┻┓
@@ -18,40 +20,35 @@ package zslice
  *      ┗┻┛　 ┗┻┛
  @Time    : 2024/7/15 -- 14:43
  @Author  : bishop ❤️ MONEY
- @Description: slice 常用函数封装
+ @Description: 对 go/src/slice 的补充 https://github.com/golang/go/blob/master/src/slices/slices.go
 */
 
-type EqualFn func(a, b any) bool
-
-// Distinct 对 src 去重
-func Distinct[T comparable](src []T) (dst []T) {
-	tempMap := map[T]struct{}{}
-	for _, t := range src {
-		// directly use hmap.count
+func Distinct[S ~[]E, E comparable](src S) (dst S) {
+	tempMap := make(map[E]struct{})
+	for _, v := range src {
 		l := len(tempMap)
-		tempMap[t] = struct{}{}
-
-		// if len changes, means the item we add to tempMap is first seen in the progress.
+		tempMap[v] = struct{}{}
 		if len(tempMap) != l {
-			dst = append(dst, t)
+			dst = append(dst, v)
 		}
 	}
 	return
 }
 
-// Contains 判断 tar 是否在 src 中
-func Contains[T comparable](src []T, tar T) bool {
-	for _, t := range src {
-		if t == tar {
-			return true
+func DistinctFunc[S ~[]E, E any](src S, eq func(a, b E) bool) (dst S) {
+	for _, v := range src {
+		if slices.ContainsFunc(dst, func(e E) bool {
+			return eq(v, e)
+		}) {
+			dst = append(dst, v)
 		}
 	}
-	return false
+	return
 }
 
 // Except 返回在 left 但是不在 right 中的 left 元素
-func Except[T comparable](left []T, right []T) (dst []T) {
-	tempMap := make(map[T]struct{}, len(right))
+func Except[S ~[]E, E comparable](left S, right S) (dst S) {
+	tempMap := make(map[E]struct{}, len(right))
 	for _, r := range right {
 		tempMap[r] = struct{}{}
 	}
@@ -63,19 +60,21 @@ func Except[T comparable](left []T, right []T) (dst []T) {
 	return
 }
 
-// Reverse 原地倒序
-func Reverse[T any](src []T) {
-	i := 0
-	j := len(src) - 1
-
-	for i < j {
-		src[i], src[j] = src[j], src[i]
-		i++
-		j--
+func ExceptFunc[S ~[]E, E any](left S, right S, eq func(a, b E) bool) (dst S) {
+	// 在 left
+	for _, v := range left {
+		// 不在 right
+		if !slices.ContainsFunc(right, func(e E) bool {
+			return eq(v, e)
+		}) {
+			// 加入结果集
+			dst = append(dst, v)
+		}
 	}
+	return dst
 }
 
-func RPop[T any](src []T) (last T) {
+func RPop[S ~[]E, E any](src S) (last E) {
 	if len(src) == 0 {
 		return
 	}
@@ -84,6 +83,19 @@ func RPop[T any](src []T) (last T) {
 	return
 }
 
-func FrontAdd[T any](src []T, added []T) []T {
+func LPop[S ~[]E, E any](src S) (first E) {
+	if len(src) == 0 {
+		return
+	}
+	first = src[0]
+	src = src[1:]
+	return
+}
+
+func FrontAdd[S ~[]E, E any](src S, added S) S {
 	return append(added, src...)
+}
+
+func BackendAdd[S ~[]E, E any](src S, added S) S {
+	return append(src, added...)
 }
