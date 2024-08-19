@@ -2,8 +2,8 @@ package zcrypto
 
 import (
 	"encoding/base64"
-	"github.com/Bishoptylaor/go-toolbox/zcrypto/base62"
-	"github.com/Bishoptylaor/go-toolbox/zutils"
+	"github.com/Bishoptylaor/go-toolkit/zcrypto/base62"
+	"github.com/Bishoptylaor/go-toolkit/zutils"
 )
 
 /*

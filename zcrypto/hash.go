@@ -1,13 +1,15 @@
 package zcrypto
 
 import (
+	"bytes"
+	"crypto"
 	"crypto/hmac"
 	"crypto/md5"
 	"crypto/sha1"
 	"crypto/sha256"
 	"crypto/sha512"
 	"encoding/hex"
-	"github.com/Bishoptylaor/go-toolbox/zutils"
+	"github.com/Bishoptylaor/go-toolkit/zutils"
 	"hash"
 )
 
@@ -99,4 +101,34 @@ func HMacEx(h func() hash.Hash, key []byte, bs []byte) string {
 	mac.Write(bs)
 	sum := mac.Sum(nil)
 	return hex.EncodeToString(sum[:])
+}
+
+type HashMethod struct {
+	h crypto.Hash
+}
+
+func NewHashMethod(h crypto.Hash) *HashMethod {
+	var hm = &HashMethod{}
+	hm.h = h
+	return hm
+}
+
+func (hm *HashMethod) Sign(data []byte) ([]byte, error) {
+	var h = hm.h.New()
+	if _, err := h.Write(data); err != nil {
+		return nil, err
+	}
+	return h.Sum(nil), nil
+}
+
+func (hm *HashMethod) Verify(data []byte, signature []byte) error {
+	var h = hm.h.New()
+	if _, err := h.Write(data); err != nil {
+		return err
+	}
+	var hashed = h.Sum(nil)
+	if bytes.Compare(hashed, signature) == 0 {
+		return nil
+	}
+	return ErrVerification
 }
