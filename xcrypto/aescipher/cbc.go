@@ -27,9 +27,9 @@ import (
 	"crypto/aes"
 	"crypto/cipher"
 	"crypto/md5"
-	"github.com/Bishoptylaor/paypay/pkg/xcrypto/base"
-	"github.com/Bishoptylaor/paypay/pkg/xcrypto/padding"
-	"github.com/Bishoptylaor/paypay/pkg/xutils"
+	"github.com/Bishoptylaor/go-toolkit/xcrypto/base"
+	"github.com/Bishoptylaor/go-toolkit/xcrypto/padding"
+	"github.com/Bishoptylaor/go-toolkit/xrand"
 	"golang.org/x/crypto/pbkdf2"
 	"hash"
 )
@@ -110,7 +110,7 @@ func (cbc) EncryptWithSalt(ctx context.Context, origData, key []byte, iter int, 
 		h = md5.New
 	}
 
-	var salt = xutils.RandomString(pkc5SaltLen)
+	var salt = xrand.RandString(pkc5SaltLen)
 	var sKey = pbkdf2.Key(key, []byte(salt), iter, len(key), h)
 	var sIV = pbkdf2.Key(sKey, []byte(salt), iter, maxIvLen, h)
 

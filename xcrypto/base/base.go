@@ -2,8 +2,8 @@ package base
 
 import (
 	"encoding/base64"
-	"github.com/Bishoptylaor/paypay/pkg/xcrypto/base62"
-	"github.com/Bishoptylaor/paypay/pkg/xutils"
+	"github.com/Bishoptylaor/go-toolkit/xcrypto/base/base62"
+	"github.com/Bishoptylaor/go-toolkit/xutils"
 )
 
 /*

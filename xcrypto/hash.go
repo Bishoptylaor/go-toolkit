@@ -9,7 +9,7 @@ import (
 	"crypto/sha256"
 	"crypto/sha512"
 	"encoding/hex"
-	"github.com/Bishoptylaor/paypay/pkg/xutils"
+	"github.com/Bishoptylaor/go-toolkit/xutils"
 	"hash"
 )
 

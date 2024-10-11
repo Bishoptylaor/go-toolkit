@@ -25,7 +25,7 @@ package aescipher
 import (
 	"context"
 	"crypto/aes"
-	"github.com/Bishoptylaor/paypay/pkg/xcrypto/padding"
+	"github.com/Bishoptylaor/go-toolkit/xcrypto/padding"
 )
 
 type ecb struct{}

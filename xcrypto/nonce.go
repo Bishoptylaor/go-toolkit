@@ -22,7 +22,7 @@
 
 package xcrypto
 
-import "github.com/Bishoptylaor/paypay/pkg/xutils"
+import "github.com/Bishoptylaor/go-toolkit/xrand"
 
 const (
 	// NonceSymbols 随机字符串可用字符集
@@ -33,5 +33,5 @@ const (
 
 // GenerateNonce 生成一个长度为 NonceLength 的随机字符串（只包含大小写字母与数字）
 func GenerateNonce() (string, error) {
-	return xutils.RandomString(NonceLength, NonceSymbols), nil
+	return string(xrand.RandAnythingSomeFrom([]byte(NonceSymbols), NonceLength)), nil
 }

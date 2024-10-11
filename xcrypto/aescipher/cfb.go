@@ -26,7 +26,7 @@ import (
 	"context"
 	"crypto/aes"
 	"crypto/cipher"
-	"github.com/Bishoptylaor/paypay/pkg/xcrypto/padding"
+	"github.com/Bishoptylaor/go-toolkit/xcrypto/padding"
 )
 
 type cfb struct{}

@@ -24,7 +24,7 @@ package aescipher
 
 import (
 	"context"
-	"github.com/Bishoptylaor/paypay/pkg/xcrypto/padding"
+	"github.com/Bishoptylaor/go-toolkit/xcrypto/padding"
 	"hash"
 )
 

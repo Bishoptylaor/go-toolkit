@@ -28,8 +28,8 @@ import (
 	"crypto/cipher"
 	"errors"
 	"fmt"
-	"github.com/Bishoptylaor/paypay/pkg/xcrypto/padding"
-	"github.com/Bishoptylaor/paypay/pkg/xutils"
+	"github.com/Bishoptylaor/go-toolkit/xcrypto/padding"
+	"github.com/Bishoptylaor/go-toolkit/xrand"
 )
 
 type gcm struct{}
@@ -45,7 +45,7 @@ func (gcm) Encrypt(ctx context.Context, origData, key, additional []byte, _ padd
 		return nil, err
 	}
 
-	nonce := xutils.RandomString(blockMode.NonceSize())
+	nonce := xrand.RandString(blockMode.NonceSize())
 
 	return blockMode.Seal([]byte(nonce), []byte(nonce), origData, additional), nil
 }
