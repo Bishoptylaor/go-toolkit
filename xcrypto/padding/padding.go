@@ -1,4 +1,4 @@
-package zcrypto
+package padding
 
 import (
 	"bytes"
@@ -22,7 +22,7 @@ import (
  *　　   ┃┫┫  ┃┫┫
  *      ┗┻┛　 ┗┻┛
  @Time    : 2024/7/26 -- 11:38
- @Author  : bishop ❤️ MONEY
+ @Author  : bishop
  @Description: padding
 */
 

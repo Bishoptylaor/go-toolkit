@@ -1,4 +1,4 @@
-package zcrypto
+package xcrypto
 
 import (
 	"bytes"
@@ -9,7 +9,7 @@ import (
 	"crypto/sha256"
 	"crypto/sha512"
 	"encoding/hex"
-	"github.com/Bishoptylaor/go-toolkit/zutils"
+	"github.com/Bishoptylaor/paypay/pkg/xutils"
 	"hash"
 )
 
@@ -30,7 +30,7 @@ import (
 *　　   ┃┫┫  ┃┫┫
 *      ┗┻┛　 ┗┻┛
 @Time    : 2024/7/25 -- 14:00
-@Author  : bishop ❤️ MONEY
+@Author  : bishop
 @Description: hash 加密算法集合。默认都返回 16 进制字符串
 */
 
@@ -47,7 +47,7 @@ var SHA512 _SHA512
 type _MD5 struct{}
 
 func (h _MD5) DoString(src string) string {
-	return h.DoBytes(zutils.Str2Bytes(src))
+	return h.DoBytes(xutils.Str2Bytes(src))
 }
 func (h _MD5) DoBytes(bs []byte) string {
 	sum := md5.Sum(bs)
@@ -57,7 +57,7 @@ func (h _MD5) DoBytes(bs []byte) string {
 type _SHA1 struct{}
 
 func (h _SHA1) DoString(src string) string {
-	return h.DoBytes(zutils.Str2Bytes(src))
+	return h.DoBytes(xutils.Str2Bytes(src))
 }
 func (h _SHA1) DoBytes(bs []byte) string {
 	sum := sha1.Sum(bs)
@@ -67,7 +67,7 @@ func (h _SHA1) DoBytes(bs []byte) string {
 type _SHA256 struct{}
 
 func (h _SHA256) DoString(src string) string {
-	return h.DoBytes(zutils.Str2Bytes(src))
+	return h.DoBytes(xutils.Str2Bytes(src))
 }
 func (h _SHA256) DoBytes(bs []byte) string {
 	sum := sha256.Sum256(bs)
@@ -77,7 +77,7 @@ func (h _SHA256) DoBytes(bs []byte) string {
 type _SHA512 struct{}
 
 func (h _SHA512) DoString(src string) string {
-	return h.DoBytes(zutils.Str2Bytes(src))
+	return h.DoBytes(xutils.Str2Bytes(src))
 }
 func (h _SHA512) DoBytes(bs []byte) string {
 	sum := sha512.Sum512(bs)

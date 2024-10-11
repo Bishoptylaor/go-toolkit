@@ -23,7 +23,7 @@ import (
 *　　   ┃┫┫  ┃┫┫
 *      ┗┻┛　 ┗┻┛
 @Time    : 2024/7/25 -- 14:00
-@Author  : bishop ❤️ MONEY
+@Author  : bishop
 @Description: a copy of encoding/base64. suit for base62
 */
 
@@ -299,15 +299,15 @@ func (enc *B62Encoding) DecodeString(s string) ([]byte, error) {
 }
 
 type decoder struct {
-	err     error
-	readErr error // error from r.Read
-	enc     *B62Encoding
-	r       io.Reader
-	end     bool       // saw end of message
-	buf     [1024]byte // leftover input
-	nbuf    int
-	out     []byte // leftover decoded output
-	outbuf  [1024 / 4 * 3]byte
+	err    error
+	CfgOpr error // error from r.Read
+	enc    *B62Encoding
+	r      io.Reader
+	end    bool       // saw end of message
+	buf    [1024]byte // leftover input
+	nbuf   int
+	out    []byte // leftover decoded output
+	outbuf [1024 / 4 * 3]byte
 }
 
 func (d *decoder) Read(p []byte) (n int, err error) {
@@ -325,7 +325,7 @@ func (d *decoder) Read(p []byte) (n int, err error) {
 	// This code assumes that d.r strips supported whitespace ('\r' and '\n').
 
 	// Refill buffer.
-	for d.nbuf < 4 && d.readErr == nil {
+	for d.nbuf < 4 && d.CfgOpr == nil {
 		nn := len(p) / 3 * 4
 		if nn < 4 {
 			nn = 4
@@ -333,7 +333,7 @@ func (d *decoder) Read(p []byte) (n int, err error) {
 		if nn > len(d.buf) {
 			nn = len(d.buf)
 		}
-		nn, d.readErr = d.r.Read(d.buf[d.nbuf:nn])
+		nn, d.CfgOpr = d.r.Read(d.buf[d.nbuf:nn])
 		d.nbuf += nn
 	}
 
@@ -357,11 +357,11 @@ func (d *decoder) Read(p []byte) (n int, err error) {
 	return n, d.err
 }
 
-type newlineFilteringReader struct {
+type newlineFilteringCfgOp struct {
 	wrapped io.Reader
 }
 
-func (r *newlineFilteringReader) Read(p []byte) (int, error) {
+func (r *newlineFilteringCfgOp) Read(p []byte) (int, error) {
 	n, err := r.wrapped.Read(p)
 	for n > 0 {
 		offset := 0
@@ -384,7 +384,7 @@ func (r *newlineFilteringReader) Read(p []byte) (int, error) {
 
 // NewDecoder constructs a new base64 stream decoder.
 func NewDecoder(enc *B62Encoding, r io.Reader) io.Reader {
-	return &decoder{enc: enc, r: &newlineFilteringReader{r}}
+	return &decoder{enc: enc, r: &newlineFilteringCfgOp{r}}
 }
 
 // DecodedLen returns the maximum length in bytes of the decoded data

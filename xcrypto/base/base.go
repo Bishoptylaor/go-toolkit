@@ -1,9 +1,9 @@
-package zcrypto
+package base
 
 import (
 	"encoding/base64"
-	"github.com/Bishoptylaor/go-toolkit/zcrypto/base62"
-	"github.com/Bishoptylaor/go-toolkit/zutils"
+	"github.com/Bishoptylaor/paypay/pkg/xcrypto/base62"
+	"github.com/Bishoptylaor/paypay/pkg/xutils"
 )
 
 /*
@@ -23,7 +23,7 @@ import (
 *　　   ┃┫┫  ┃┫┫
 *      ┗┻┛　 ┗┻┛
 @Time    : 2024/7/25 -- 14:00
-@Author  : bishop ❤️ MONEY
+@Author  : bishop
 @Description: base64 and base62
 */
 
@@ -42,12 +42,12 @@ var Base62 b62
 type b64 struct{}
 
 func (b b64) SEncode(in string) string {
-	return b.Encode(zutils.Str2Bytes(in))
+	return b.Encode(xutils.Str2Bytes(in))
 }
 
 func (b b64) SDecode(in string) (string, error) {
 	bs, err := b.Decode(in)
-	return zutils.Bytes2Str(bs), err
+	return xutils.Bytes2Str(bs), err
 }
 func (b b64) Encode(in []byte) string {
 	return base64.StdEncoding.EncodeToString(in)
@@ -60,12 +60,12 @@ func (b b64) Decode(in string) ([]byte, error) {
 type b64u struct{}
 
 func (b b64u) SEncode(in string) string {
-	return b.Encode(zutils.Str2Bytes(in))
+	return b.Encode(xutils.Str2Bytes(in))
 }
 
 func (b b64u) SDecode(in string) (string, error) {
 	bs, err := b.Decode(in)
-	return zutils.Bytes2Str(bs), err
+	return xutils.Bytes2Str(bs), err
 }
 func (b b64u) Encode(in []byte) string {
 	return base64.URLEncoding.EncodeToString(in)
@@ -78,12 +78,12 @@ func (b b64u) Decode(in string) ([]byte, error) {
 type b62 struct{}
 
 func (b b62) SEncode(in string) string {
-	return b.Encode(zutils.Str2Bytes(in))
+	return b.Encode(xutils.Str2Bytes(in))
 }
 
 func (b b62) SDecode(in string) (string, error) {
 	bs, err := b.Decode(in)
-	return zutils.Bytes2Str(bs), err
+	return xutils.Bytes2Str(bs), err
 }
 func (b b62) Encode(in []byte) string {
 	return base62.B62StdEncoding.EncodeToString(in)
