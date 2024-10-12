@@ -52,3 +52,5 @@ func loadXml() loadFunc {
 func defaultLoader() CfgOp {
 	return Res(ResTypeJSON)
 }
+
+var DefaultLoader = defaultLoader

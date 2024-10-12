@@ -42,6 +42,8 @@ var _MethodMap = map[string]func(url string) CfgOp{
 	http.MethodOptions: Option,
 }
 
+type HttpConfig httpConfig
+
 type httpConfig struct {
 	url         string
 	method      string

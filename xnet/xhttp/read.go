@@ -26,14 +26,18 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/Bishoptylaor/paypay"
-	"github.com/Bishoptylaor/paypay/pkg/xutils"
+	"github.com/Bishoptylaor/go-toolkit/xutils"
 	"io"
 	"mime/multipart"
 	"net/url"
 	"sort"
 	"strings"
 )
+
+type File struct {
+	Name    string `json:"name"`
+	Content []byte `json:"content"`
+}
 
 var _ReqContentTypeReader = map[string]func(cfg *httpConfig) reader{
 	TypeJSON:              readJson,
@@ -43,6 +47,8 @@ var _ReqContentTypeReader = map[string]func(cfg *httpConfig) reader{
 }
 
 type reader func(any) (io.Reader, error)
+
+var DefaultReader = defaultReader
 
 func defaultReader() CfgOp {
 	return Req(TypeJSON)
@@ -94,7 +100,7 @@ func readFile(c *httpConfig) reader {
 			}
 			for k, v := range m {
 				// file 参数
-				if file, ok := v.(*paypay.File); ok {
+				if file, ok := v.(*File); ok {
 					fw, e := fileContent.CreateFormFile(k, file.Name)
 					if e != nil {
 						return body, fmt.Errorf("create form file error: %v", e)
