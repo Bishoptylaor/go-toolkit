@@ -1,5 +1,3 @@
-package ztime
-
 /*
  *  ┏┓      ┏┓
  *┏━┛┻━━━━━━┛┻┓
@@ -20,6 +18,8 @@ package ztime
  @Author  : bishop ❤️ MONEY
  @Description: 时间窗口校验，是否还在窗口内
 */
+
+package xtime
 
 import (
 	"encoding/json"

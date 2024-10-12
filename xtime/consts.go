@@ -1,5 +1,3 @@
-package ztime
-
 /*
  *  ┏┓      ┏┓
  *┏━┛┻━━━━━━┛┻┓
@@ -20,6 +18,8 @@ package ztime
  @Author  : bishop ❤️ MONEY
  @Description: 时间处理相关 const 定义集合
 */
+
+package xtime
 
 const (
 	TimeForever = 0 // 永久

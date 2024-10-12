@@ -1,5 +1,3 @@
-package ztime
-
 /*
  *  ┏┓      ┏┓
  *┏━┛┻━━━━━━┛┻┓
@@ -21,6 +19,8 @@ package ztime
  @Description: 时间函数封装
  @TODO: 结构整理 & 增加时区逻辑
 */
+
+package xtime
 
 import (
 	"context"
