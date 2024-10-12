@@ -48,8 +48,6 @@ var _ReqContentTypeReader = map[string]func(cfg *httpConfig) reader{
 
 type reader func(any) (io.Reader, error)
 
-var DefaultReader = defaultReader
-
 func defaultReader() CfgOp {
 	return Req(TypeJSON)
 }
