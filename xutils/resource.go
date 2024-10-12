@@ -1,5 +1,3 @@
-package zutils
-
 /*
  *  ┏┓      ┏┓
  *┏━┛┻━━━━━━┛┻┓
@@ -20,3 +18,5 @@ package zutils
  @Author  : bishop ❤️ MONEY
  @Description: resource.go
 */
+
+package xutils

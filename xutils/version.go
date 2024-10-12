@@ -1,10 +1,3 @@
-package zutils
-
-import (
-	"fmt"
-	"strings"
-)
-
 /*
  *  ┏┓      ┏┓
  *┏━┛┻━━━━━━┛┻┓
@@ -25,6 +18,13 @@ import (
  @Author  : bishop ❤️ MONEY
  @Description: version.go
 */
+
+package xutils
+
+import (
+	"fmt"
+	"strings"
+)
 
 type VersionCmp struct {
 	ver string

@@ -1,10 +1,3 @@
-package zutils
-
-import (
-	"regexp"
-	"strings"
-)
-
 /*
  *  ┏┓      ┏┓
  *┏━┛┻━━━━━━┛┻┓
@@ -25,6 +18,13 @@ import (
  @Author  : bishop ❤️ MONEY
  @Description:  手机号相关处理函数
 */
+
+package xutils
+
+import (
+	"regexp"
+	"strings"
+)
 
 /*
 ParsePhone

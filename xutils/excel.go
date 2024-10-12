@@ -1,14 +1,3 @@
-package zutils
-
-import (
-	"bytes"
-	"context"
-	"fmt"
-	"github.com/360EntSecGroup-Skylar/excelize"
-	"io"
-	"net/http"
-)
-
 /*
  *  ┏┓      ┏┓
  *┏━┛┻━━━━━━┛┻┓
@@ -29,6 +18,17 @@ import (
  @Author  : bishop ❤️ MONEY
  @Description: excel
 */
+
+package xutils
+
+import (
+	"bytes"
+	"context"
+	"fmt"
+	"github.com/360EntSecGroup-Skylar/excelize"
+	"io"
+	"net/http"
+)
 
 type excelTool struct{}
 

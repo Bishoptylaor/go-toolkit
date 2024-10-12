@@ -1,5 +1,3 @@
-package zutils
-
 /*
  *  ┏┓      ┏┓
  *┏━┛┻━━━━━━┛┻┓
@@ -20,6 +18,8 @@ package zutils
  @Author  : bishop ❤️ MONEY
  @Description: phone_ext.go
 */
+
+package xutils
 
 var PhoneRegExpMap = map[string]*PhoneRegExp{
 	"CN": &PhoneRegExp{

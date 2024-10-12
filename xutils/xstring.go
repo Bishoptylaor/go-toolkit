@@ -1,11 +1,3 @@
-package zutils
-
-import (
-	"bytes"
-	"unicode/utf8"
-	"unsafe"
-)
-
 /*
  *  ┏┓      ┏┓
  *┏━┛┻━━━━━━┛┻┓
@@ -24,8 +16,17 @@ import (
  *      ┗┻┛　 ┗┻┛
  @Time    : 2024/7/13 -- 15:00
  @Author  : bishop ❤️ MONEY
- @Description: zstring.go
+ @Description: xstring.go
 */
+
+package xutils
+
+import (
+	"bytes"
+	"encoding/json"
+	"unicode/utf8"
+	"unsafe"
+)
 
 var (
 	sbc2dbcMap = map[rune]rune{
@@ -113,4 +114,19 @@ func FilterEmoji(s string) string {
 		}
 	}
 	return dst
+}
+
+func Any2String(v any) (str string) {
+	if v == nil {
+		return ""
+	}
+	var (
+		bs  []byte
+		err error
+	)
+	if bs, err = json.Marshal(v); err != nil {
+		return ""
+	}
+	str = string(bs)
+	return
 }
