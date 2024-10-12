@@ -17,6 +17,7 @@ require (
 	github.com/redis/go-redis v6.15.9+incompatible // indirect
 	github.com/redis/go-redis/v9 v9.5.4 // indirect
 	github.com/spf13/cast v1.6.0 // indirect
+	golang.org/x/crypto v0.26.0 // indirect
 	golang.org/x/sync v0.3.0 // indirect
 	golang.org/x/time v0.5.0 // indirect
 )
