@@ -1,17 +1,3 @@
-package zfile
-
-import (
-	"bufio"
-	"context"
-	"errors"
-	"fmt"
-	"github.com/Bishoptylaor/go-toolbox/zutils"
-	"io"
-	"os"
-	"strings"
-	"time"
-)
-
 /*
  *  ┏┓      ┏┓
  *┏━┛┻━━━━━━┛┻┓
@@ -32,6 +18,20 @@ import (
  @Author  : bishop ❤️ MONEY
  @Description: 常用文件操作封装
 */
+
+package xfile
+
+import (
+	"bufio"
+	"context"
+	"errors"
+	"fmt"
+	"github.com/Bishoptylaor/go-toolkit/xutils"
+	"io"
+	"os"
+	"strings"
+	"time"
+)
 
 const IO_BUFFER_SIZE = 4096
 
@@ -231,7 +231,7 @@ func ReadAllString(filePath string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	return zutils.Bytes2Str(b), nil
+	return xutils.Bytes2Str(b), nil
 }
 
 // ReadLines 通过 channel 读取每行

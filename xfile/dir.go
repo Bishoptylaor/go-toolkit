@@ -1,12 +1,3 @@
-package zfile
-
-import (
-	"errors"
-	"fmt"
-	"github.com/Bishoptylaor/go-toolbox/zcontainer"
-	"os"
-)
-
 /*
  *  ┏┓      ┏┓
  *┏━┛┻━━━━━━┛┻┓
@@ -27,6 +18,15 @@ import (
  @Author  : bishop ❤️ MONEY
  @Description: 常用文件操作封装 dir
 */
+
+package xfile
+
+import (
+	"errors"
+	"fmt"
+	"github.com/Bishoptylaor/go-toolkit/xcontainer"
+	"os"
+)
 
 // DirExists 判断文件路径是否存在
 func DirExists(p string) bool {
@@ -126,7 +126,7 @@ func EachFile(filepath string, fic FileInfoCallback) error {
 	if !fi.IsDir() {
 		return errors.New("filepath is not dir")
 	}
-	var stack zcontainer.Stack
+	var stack xcontainer.Stack
 	stack.Push(filepath)
 	for {
 		if stack.Len() <= 0 {
