@@ -1,5 +1,3 @@
-package zcontainer
-
 /*
  *  ┏┓      ┏┓
  *┏━┛┻━━━━━━┛┻┓
@@ -20,6 +18,8 @@ package zcontainer
  @Author  : bishop ❤️ MONEY
  @Description: stack
 */
+
+package xcontainer
 
 type StackElement struct {
 	next  *StackElement
