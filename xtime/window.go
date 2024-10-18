@@ -24,7 +24,6 @@ package xtime
 import (
 	"encoding/json"
 	"errors"
-	"github.com/shawnfeng/sutil/stime"
 	"time"
 )
 
@@ -128,7 +127,7 @@ type NatureDayTimeChecker struct {
 
 func (n *NatureDayTimeChecker) Check(start, end int64) bool {
 	_start := time.Unix(start, 0).AddDate(0, 0, n.Value).Unix()
-	if stime.DayBeginStamp(_start) <= stime.DayBeginStamp(end) {
+	if DayBeginStamp(_start) <= DayBeginStamp(end) {
 		return true
 	}
 	return false
