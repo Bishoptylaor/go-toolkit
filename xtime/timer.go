@@ -1,10 +1,10 @@
 package xtime
 
 import (
+	"github.com/Bishoptylaor/go-toolkit/xutils/sync2"
 	"sync"
+	"sync/atomic"
 	"time"
-
-	"gitlab.pri.ibanyu.com/middleware/seaweed/xutil/sync2"
 )
 
 // Out-of-band messages
@@ -40,6 +40,7 @@ will react only to an explicit Trigger or Stop.
 */
 type Timer struct {
 	interval sync2.AtomicDuration
+	i        atomic.Bool
 
 	// state management
 	mu      sync.Mutex
