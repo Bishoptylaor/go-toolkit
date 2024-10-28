@@ -111,3 +111,7 @@ func (d Duration) Shrink(c context.Context) (Duration, context.Context, context.
 	ctx, cancel := context.WithTimeout(c, time.Duration(d))
 	return d, ctx, cancel
 }
+
+func GetNowMs() int64 {
+	return time.Now().UnixNano() / int64(time.Millisecond)
+}
