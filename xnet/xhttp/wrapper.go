@@ -102,6 +102,7 @@ func (h *HcWrapper) CallOpOk(ctx context.Context, payload any, opts ...CfgOp) (*
 		return nil, nil, err
 	}
 	if res.StatusCode != http.StatusOK {
+		io.Copy(io.Discard, res.Body)
 		return res, []byte{}, fmt.Errorf("StatusCode(%d) != 200", res.StatusCode)
 	}
 	return res, bs, nil

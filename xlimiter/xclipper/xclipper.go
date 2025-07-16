@@ -1,17 +1,3 @@
-package zclipper
-
-import (
-	"context"
-	"errors"
-	"fmt"
-	"github.com/redis/go-redis/v9"
-	"github.com/spf13/cast"
-	"strings"
-	"sync"
-	"sync/atomic"
-	"time"
-)
-
 /*
  *  ┏┓      ┏┓
  *┏━┛┻━━━━━━┛┻┓
@@ -30,8 +16,22 @@ import (
  *      ┗┻┛　 ┗┻┛
  @Time    : 2024/7/19 -- 11:44
  @Author  : bishop ❤️ MONEY
- @Description: z clipper
+ @Description: xclipper
 */
+
+package xclipper
+
+import (
+	"context"
+	"errors"
+	"fmt"
+	"github.com/redis/go-redis/v9"
+	"github.com/spf13/cast"
+	"strings"
+	"sync"
+	"sync/atomic"
+	"time"
+)
 
 type ZClipper interface {
 	Add(ctx context.Context, api string, reloadFunc ReloadInt64Func, fallbackFunc FallbackInt64Func, intervalFunc IntervalFunc) error

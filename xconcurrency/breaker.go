@@ -1,5 +1,3 @@
-package zconcurrency
-
 /*
  *  ┏┓      ┏┓
  *┏━┛┻━━━━━━┛┻┓
@@ -21,13 +19,15 @@ package zconcurrency
  @Description: 熔断器
 */
 
+package xconcurrency
+
 import (
 	"strings"
 	"sync"
 	"sync/atomic"
 	"time"
 
-	"github.com/Bishoptylaor/go-toolbox/zutils"
+	"github.com/Bishoptylaor/go-toolkit/xutils"
 )
 
 const (
@@ -54,7 +54,7 @@ var bm *BreakerManager
 // StatBreaker state errors for breaker
 func StatBreaker(cluster, table string, err error) {
 	if err != nil && (strings.Contains(err.Error(), "timeout") || strings.Contains(err.Error(), "invalid connection")) {
-		key := zutils.Concat(cluster, "_", table)
+		key := xutils.Concat(cluster, "_", table)
 		bm.lock.Lock()
 		if _, ok := bm.Breakers[key]; !ok {
 			breaker := new(Breaker)
@@ -69,7 +69,7 @@ func StatBreaker(cluster, table string, err error) {
 
 // Entry check if allow request
 func Entry(cluster, table string) bool {
-	key := zutils.Concat(cluster, "_", table)
+	key := xutils.Concat(cluster, "_", table)
 	bm.lock.Lock()
 	breaker := bm.Breakers[key]
 	bm.lock.Unlock()

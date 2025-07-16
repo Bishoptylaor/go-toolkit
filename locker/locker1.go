@@ -1,5 +1,3 @@
-package locker
-
 /*
  *  ┏┓      ┏┓
  *┏━┛┻━━━━━━┛┻┓
@@ -20,6 +18,8 @@ package locker
  @Author  : bishop ❤️ MONEY
  @Description: locker1.go
 */
+
+package locker
 
 import (
 	"context"

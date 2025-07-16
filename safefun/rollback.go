@@ -1,7 +1,3 @@
-package safefun
-
-import "fmt"
-
 /*
  *  ┏┓      ┏┓
  *┏━┛┻━━━━━━┛┻┓
@@ -23,6 +19,10 @@ import "fmt"
  @Description: 回滚序列函数
  @TODO: panic 封装处理
 */
+
+package safefun
+
+import "fmt"
 
 // RollbackOp 回滚操作序列
 type RollbackOp struct {

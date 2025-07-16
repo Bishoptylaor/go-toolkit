@@ -1,13 +1,3 @@
-package zstorage
-
-import (
-	"context"
-	"encoding/json"
-	"fmt"
-	"strconv"
-	"time"
-)
-
 /*
  *  ┏┓      ┏┓
  *┏━┛┻━━━━━━┛┻┓
@@ -26,8 +16,18 @@ import (
  *      ┗┻┛　 ┗┻┛
  @Time    : 2024/7/13 -- 14:54
  @Author  : bishop ❤️ MONEY
- @Description: zredis.go
+ @Description: xredis.go
 */
+
+package xstorage
+
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"strconv"
+	"time"
+)
 
 var RedisCounter rCounter
 

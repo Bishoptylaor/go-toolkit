@@ -1,5 +1,3 @@
-package zprometheus
-
 /*
  *  ┏┓      ┏┓
  *┏━┛┻━━━━━━┛┻┓
@@ -20,3 +18,5 @@ package zprometheus
  @Author  : bishop ❤️ MONEY
  @Description: prometheus.go
 */
+
+package xprometheus

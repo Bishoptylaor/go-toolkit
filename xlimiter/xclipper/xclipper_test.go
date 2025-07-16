@@ -1,4 +1,4 @@
-package zclipper
+package xclipper
 
 import (
 	"fmt"

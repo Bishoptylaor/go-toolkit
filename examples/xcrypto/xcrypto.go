@@ -1,11 +1,15 @@
 package main
 
 import (
+	"context"
 	"crypto/aes"
 	"crypto/cipher"
 	"encoding/hex"
 	"fmt"
-	. "github.com/Bishoptylaor/go-toolkit/zcrypto"
+	. "github.com/Bishoptylaor/go-toolkit/xcrypto"
+	"github.com/Bishoptylaor/go-toolkit/xcrypto/aescipher"
+	"github.com/Bishoptylaor/go-toolkit/xcrypto/base"
+	"github.com/Bishoptylaor/go-toolkit/xcrypto/padding"
 )
 
 // online aes check https://www.lddgo.net/en/encrypt/aes
@@ -29,7 +33,7 @@ func TestBase() {
 	}
 
 	// 填充原始数据以满足块大小要求
-	paddedText := PKCS7.Padding(origData, aes.BlockSize)
+	paddedText := padding.PKCS7.Padding(origData, aes.BlockSize)
 
 	// 加密
 	cbcEncrypter := cipher.NewCBCEncrypter(block, key[:aes.BlockSize])
@@ -37,9 +41,9 @@ func TestBase() {
 	fmt.Printf("Encrypted: %x\n", paddedText)
 
 	url := "https://a/b/c/thisisaverylongurlwaitingtobeshorter"
-	b62 := Base62.SEncode(url)
+	b62 := base.Base62.SEncode(url)
 	fmt.Println("b62: ", b62)
-	fmt.Println(Base62.SDecode(b62))
+	fmt.Println(base.Base62.SDecode(b62))
 }
 
 func TestAESCBCEncrypt() {
@@ -69,10 +73,11 @@ func TestAESCBCEncrypt() {
 		},
 	}
 
-	var pad = PKCS5
+	var pad = padding.PKCS5
+	var cipher = aescipher.CBC()
 
 	for _, test := range testTbl {
-		var encrypted, err = AESCBCEncrypt(test.origData, test.key, test.iv, pad)
+		var encrypted, err = cipher.Encrypt(context.TODO(), test.origData, test.key, test.iv, pad)
 		if err != nil {
 			fmt.Println(err)
 		}
@@ -112,12 +117,13 @@ func TestAESCBCDecrypt() {
 		},
 	}
 
-	var padding = PKCS5
+	var padding = padding.PKCS5
+	var cipher = aescipher.CBC()
 
 	for _, test := range testTbl {
 		var encrypted, _ = hex.DecodeString(test.encrypted)
 
-		var origData, err = AESCBCDecrypt(encrypted, test.key, test.iv, padding)
+		var origData, err = cipher.Decrypt(context.TODO(), encrypted, test.key, test.iv, padding)
 		if err != nil {
 			fmt.Println(err)
 		}
@@ -157,10 +163,11 @@ func TestAESCFBEncrypt() {
 		},
 	}
 
-	var padding = PKCS5
+	var padding = padding.PKCS5
+	var cipher = aescipher.CFB()
 
 	for _, test := range testTbl {
-		var encrypted, err = AESCFBEncrypt(test.origData, test.key, test.iv, padding)
+		var encrypted, err = cipher.Encrypt(context.TODO(), test.origData, test.key, test.iv, padding)
 		if err != nil {
 			fmt.Println(err)
 		}
@@ -200,12 +207,13 @@ func TestAESCFBDecrypt() {
 		},
 	}
 
-	var padding = PKCS5
+	var padding = padding.PKCS5
+	var cipher = aescipher.CFB()
 
 	for _, test := range testTbl {
 		var encrypted, _ = hex.DecodeString(test.encrypted)
 
-		var origData, err = AESCFBDecrypt(encrypted, test.key, test.iv, padding)
+		var origData, err = cipher.Decrypt(context.TODO(), encrypted, test.key, test.iv, padding)
 		if err != nil {
 			fmt.Println(err)
 		}
@@ -239,10 +247,12 @@ func TestAESGCMDecryptWithNonce() {
 		},
 	}
 
+	var cipher = aescipher.GCMByNonce()
+
 	for _, test := range testTbl {
 		var encrypted, _ = hex.DecodeString(test.encrypted)
 
-		var origData, err = AESGCMDecryptWithNonce(encrypted, test.key, test.nonce, nil)
+		var origData, err = cipher.DecryptWithNonce(context.TODO(), encrypted, test.key, test.nonce, nil)
 		if err != nil {
 			fmt.Println(err)
 		}

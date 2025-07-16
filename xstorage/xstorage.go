@@ -1,5 +1,3 @@
-package zstorage
-
 /*
  *  ┏┓      ┏┓
  *┏━┛┻━━━━━━┛┻┓
@@ -18,8 +16,10 @@ package zstorage
  *      ┗┻┛　 ┗┻┛
  @Time    : 2024/7/13 -- 15:47
  @Author  : bishop ❤️ MONEY
- @Description: zstorage.go
+ @Description: xstorage.go
 */
+
+package xstorage
 
 // Errors of not found include redis/mongo/mysql
 const (

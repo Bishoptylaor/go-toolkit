@@ -5,7 +5,7 @@ import (
 
 	"github.com/panjf2000/ants/v2"
 
-	"github.com/Bishoptylaor/go-toolbox/zlog"
+	"github.com/Bishoptylaor/go-toolkit/xlog"
 )
 
 // Pool alias of ants.Pool
